@@ -2,6 +2,7 @@ package com.example.diceroller
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -25,7 +26,22 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener {
-            rollDice()
+            rollDice(R.id.imageView )
+            val diceImage: ImageView = findViewById(R.id.imageView2)
+            diceImage.setVisibility(View.INVISIBLE)
+
+            mediaPlayer = MediaPlayer.create(this, R.raw.rolldice1)
+            mediaPlayer?.start()
+            //mediaPlayer.start()
+            Toast.makeText(this, "Würfel ... würfel . .", Toast.LENGTH_SHORT).show()
+        }
+
+        val rollButton2: Button = findViewById(R.id.button2)
+        rollButton2.setOnClickListener {
+            rollDice(R.id.imageView )
+            rollDice(R.id.imageView2 )
+            val diceImage: ImageView = findViewById(R.id.imageView2)
+            diceImage.setVisibility(View.VISIBLE)
 
             mediaPlayer = MediaPlayer.create(this, R.raw.rolldice1)
             mediaPlayer?.start()
@@ -34,17 +50,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         // show first dice on open the app
-        rollDice()
+        rollDice(R.id.imageView )
+        //rollDice(R.id.imageView2 )
     }
 
     /**
      * Roll the dice and update the screen with the result.
      */
-    private fun rollDice() {
+    private fun rollDice(ivid:Int) {
         // Create a new Dice objet with 6 sides
         val dice = Dice(6)
         val diceRoll = dice.roll()
-        val diceImage: ImageView = findViewById(R.id.imageView)
+        // diceImage: ImageView = findViewById(R.id.imageView )
+        val diceImage: ImageView = findViewById(ivid)
         //diceImage.setImageResource(R.drawable.dice_2)
         /**when (diceRoll) {
         1 -> diceImage.setImageResource(R.drawable.dice_1)

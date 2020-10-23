@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Steini\'s Dice Roller</string>
-    <string name="roll">Roll</string>
+    <string name="roll">Roll 1</string>
+    <string name="roll2">Roll 2</string>
 </resources>
